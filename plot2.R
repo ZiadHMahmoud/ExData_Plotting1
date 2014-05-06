@@ -1,0 +1,7 @@
+houshold=read.table(file="household_power_consumption.txt", header=TRUE, sep=";", as.is=TRUE, na.strings="?", colClasses=c("character", "character", "numeric", "numeric", "numeric", "numeric", "numeric", "numeric", "numeric"))
+wantedData=subset(houshold, Date=="1/2/2007"| Date=="2/2/2007")
+wantedData$DateTime=paste(wantedData$Date, wantedData$Time)
+wantedData$DateTime=strptime(wantedData$DateTime, "%d/%m/%Y %H:%M:%S")
+plot(wantedData$DateTime, wantedData$Global_active_power, type="l", ylab="Global Active Power (kilowatts)", xlab="")
+dev.copy(png, file="plot2.png")
+dev.off()
